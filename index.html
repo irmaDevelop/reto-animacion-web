@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: yellow;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cabeza{
+            padding: 50px;
+            height: 400px;
+            background-color:gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .oreja-derecha{
+            width: 150px;
+            height: 200px;
+            border-radius: 50%;
+            background-color:gray;
+            transform: rotate(-60deg);
+            position: fixed;
+            top:-20px;
+            right: 250px;
+        }
+
+        .oreja-izquierda{
+            width: 200px;
+            height: 150px;
+            border-radius: 50%;
+            background-color:gray;
+            /* transform: rotate(-30deg); */
+            position: fixed;
+            top:-20px;
+            left: 250px;
+            animation-name: oreja;
+            animation-duration: .2s;
+            animation-delay: 1s;
+            animation-iteration-count: 4;
+            /* animation-direction: alternate; */
+            animation-timing-function: linear;
+        }
+        .ojo{
+            margin:5px;
+            width: 300px;
+            height: 300px;
+            background-color:white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+       
+
+          ojo:hover .pupila-blue{
+            left: 200px;
+            border-radius: 100%;
+            /* transform: rotate(-10deg) translate(90px); */
+        }
+
+        ojo:hover .pupila-green{
+            left: 200px;
+            border-radius: 100%;
+            /* transform: rotate(-10deg) translate(90px); */
+        }
+        .pupila-blue{
+            width: 120px;
+            height: 120px;
+            background-color:blue;
+            border-radius: 50%;
+            animation-name: pupila-blue;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-iteration-count: 5;
+            /* animation-direction: alternate; */
+            animation-timing-function: linear;
+
+        }
+
+        .pupila-green{
+            width: 120px;
+            height: 120px;
+            background-color:green;
+            border-radius: 50%;
+            animation-name: pupila-green;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-iteration-count: 5;
+            animation-timing-function: linear;
+
+        }
+
+
+
+        @keyframes oreja{
+            /* 0% */
+            from {
+                transform: rotate(0deg);
+            }
+            /* 100% */
+            to{
+                transform: rotate(10deg);
+                
+            }
+        }
+
+        @keyframes pupila-blue{
+            /* 0% */
+            from {
+                transform: rotate(0deg) translate(90px);
+            }
+            /* 100% */
+            to{
+                transform: rotate(360deg) translate(90px);
+                
+            }
+        }
+
+        @keyframes pupila-green{
+            /* 0% */
+            from {
+                transform: rotate(0deg) translate(90px);
+            }
+            /* 100% */
+            to{
+                transform: rotate(-360deg) translate(90px);
+                
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="cabeza">
+        <div class="ojo">
+            <div class="pupila-blue" id="ojoBlue">
+    
+            </div>
+        </div>
+    
+        <div class="ojo">
+                <div class="pupila-green" id="ojoGreen">
+        
+                </div>
+        </div>
+
+    </div>
+
+    <div class="oreja-derecha">
+    </div>
+
+    <div class="oreja-izquierda" id="oreja">
+    </div>
+
+    <script>    
+            const $oreja    = document.getElementById('oreja');
+            const $ojoBlue  = document.getElementById('ojoBlue');
+            const $ojoGreen = document.getElementById('ojoGreen');
+            $ojoBlue.style.animationPlayState = "paused";
+            $ojoGreen.style.animationPlayState = "paused";
+            
+            $oreja.addEventListener('animationend', (event) => {
+                console.log(event.animationName);
+                if (event.animationName === 'oreja') {
+                    // cuando acabe el rebote que haga la escalera
+                    $ojoBlue.style.animationPlayState = "initial";
+                    $ojoGreen.style.animationPlayState = "initial";
+                    $ojoGreen.style.animationDuration = '3s';
+                    $ojoBlue.style.animationDuration = '3s';
+                }
+            });
+        </script>
+</body>
+</html>
